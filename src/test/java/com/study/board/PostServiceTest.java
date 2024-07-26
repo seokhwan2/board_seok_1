@@ -1,0 +1,40 @@
+package com.study.board;
+
+import com.study.board.domain.post.PostRequest;
+import com.study.board.domain.post.PostService;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
+
+@SpringBootTest
+class PostServiceTest {
+
+    @Autowired
+    PostService postService;
+
+    @Test
+    void save(){
+        PostRequest params = new PostRequest();
+        params.setTitle("1번 게시글 제목");
+        params.setContent("1번 게시글 내용");
+        params.setWriter("테스터");
+        params.setNoticeYn(false);
+        Long id = postService.savePost(params);
+        System.out.println("생성된 게시글 ID : " + id);
+
+    }
+
+/*    @Test
+    void saveByForeach() {
+        for (int i = 1; i <= 1000; i++) {
+            PostRequest params = new PostRequest();
+            params.setTitle(i + "번 게시글 제목");
+            params.setContent(i + "번 게시글 내용");
+            params.setWriter("테스터" + i);
+            params.setNoticeYn(false);
+            postService.savePost(params);
+        }
+    }*/
+}
